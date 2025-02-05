@@ -1,0 +1,14 @@
+# Use a minimal base image
+FROM ubuntu:20.04
+
+# Install necessary packages
+RUN apt-get update && apt-get install -y iputils-ping bash
+
+# Copy the ping script into the container
+COPY ping_script.sh /usr/local/bin/ping_script.sh
+
+# Make the script executable
+RUN chmod +x /usr/local/bin/ping_script.sh
+
+# Run the script in the background
+CMD ["/usr/local/bin/ping_script.sh"]
